@@ -8,8 +8,6 @@ const server = http.createServer((req, res) => {
     req.headers
   );
 
-  res.
-
   res.setHeader("Content-type", "text/html"); // 브라우저에게 html을 응답한다는 것을 알림
   // html 코드 작성
   res.write('<html>')
