@@ -23,13 +23,16 @@ const server = http.createServer((req, res) => {
       console.log(chunk);
       body.push(chunk);
     });
-    return req.on("end", () => { // 37행에 너무 빨리 도달하지 않기 위해 여기서 return
+    return req.on("end", () => { 
       const parsedBody = Buffer.concat(body).toString();
       const message = parsedBody.split('=')[1];
-      fs.writeFileSync("message.txt", message);
-      res.statusCode = 302;
-      res.setHeader("Location", "/");
-      return res.end();
+      //fs.writeFileSync("message.txt", message);
+      //writeFileSync는 파일 작성이 완료될 때까지 코드실행을 막는다. 즉, 다음 행을 읽을 수 없다.
+      fs.writeFile("message.txt", message, (err) => {
+        res.statusCode = 302;
+        res.setHeader("Location", "/");
+        return res.end();
+      });
     });
   }
 
