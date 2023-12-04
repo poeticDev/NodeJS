@@ -51,8 +51,8 @@ module.exports = requestHandler;
 //   someText: "Some hard coded text",
 // };
 
-// module.exports.hanlder = requestHandler;
+// module.exports.handler = requestHandler;
 // module.exports.someText = "Some hard coded text2";
 
-// exports.hanlder = requestHandler;
+// exports.handler = requestHandler;
 // exports.someText = "Some hard coded text2";
