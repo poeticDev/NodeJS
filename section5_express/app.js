@@ -1,19 +1,26 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
 
-app.use("/",  (req, res, next) => {
-  console.log("This always runs!");
+app.use(bodyParser.urlencoded({extended: false})); //form으로 들어온 요청을 분석해줌. extended - 비표준 대상의 분석 가능 여부
+
+app.use("/", (req, res, next) => {
   next();
 });
 
 app.use("/add-product", (req, res, next) => {
-  console.log("In add-product middleware!");
-  res.send('<h1>The "Add Product" Page</h1>');
+  res.send(
+    '<form action="/product" method="POST"><input type="text" name="title"><button>Add Product</button></form>'
+  );
+});
+
+app.use("/product", (req, res, next) => {
+  console.log(req.body);
+  res.redirect("/"); // redirect(): express에서 추가된 경로 설정 함수
 });
 
 app.use("/", (req, res, next) => {
-  console.log("In another middleware!");
   res.send("<h1>Hello from Express!</h1>");
 });
 
