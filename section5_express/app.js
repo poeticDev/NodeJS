@@ -1,11 +1,20 @@
-const http = require("http"); // 1. node 전용 모듈
+const http = require("http");
 
-const express = require("express"); // 2. 서드파티 패키지
+const express = require("express");
 
-// 3. 내가 만들어 불러온 모듈을 구분해서 쓰면 식별하기 좋다.
+const app = express();
 
-const app = express(); // express 어플리케이션을 생성한다. 
+app.use((req, res, next) => {
+  // 새로운 미들웨어 추가
+  console.log("In the middleware!");
+  next(); // 요청을 아래에 있는 다른 미들웨어로 이동, 없으면 여기서 미들웨어는 멈춤
+});
 
-const server = http.createServer(app); // 앱은 그 자체로 핸들러이기도 하다.
+app.use((req, res, next) => {
+  console.log("In another middleware!");
+  res.send("<h1>Hello from Express!</h1>"); // 익스프레스의 기본 응답 헤더는 text/html. 물론 res.setHeader()로 지정해도 된다.
+});
+
+const server = http.createServer(app);
 
 server.listen(3000);
