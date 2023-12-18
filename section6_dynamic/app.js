@@ -8,10 +8,9 @@ app.set('view engine', 'pug');
 // app.set : 이 express의 전체 설정
 // view engine : 동적 템플릿을 사용함을 알림
 
-app.set('view', 'views');
+app.set('views', 'views');
 //view : view 파일들이 어디에 있는지 알려줌. views폴더가 기본값이고, 만약 다른 이름으로 해당 폴더를 만들었으면 꼭 설정해야 함.
 
-//const adminRoutes =  require("./routes/admin");
 const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 

@@ -1,5 +1,5 @@
 {
-  "name": "section5_express",
+  "name": "section6_express",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.2"
+  },
+  "dependencies": {
+    "express.js": "^1.0.0"
   }
 }
