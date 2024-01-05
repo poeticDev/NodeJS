@@ -7,7 +7,7 @@ const expressHbs = require("express-handlebars");
 
 const app = express();
 
-app.engine("hbs", expressHbs.engine());
+app.engine("hbs", expressHbs.engine({layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs'}));
 //비내장 템플릿을 사용할 때는 엔진으로 등록해줘야 함.
 app.set("view engine", "hbs");
 app.set("views", "views");
