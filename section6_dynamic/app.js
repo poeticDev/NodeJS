@@ -1,15 +1,16 @@
 const path = require("path");
+
 const express = require("express");
 const bodyParser = require("body-parser");
+const expressHbs = require("express-handlebars");
+//handlebar는 익스프레스 내장되지 않았으므로, 설치 후에도 임포트 해와야 함
 
 const app = express();
 
-app.set("view engine", "pug");
-// app.set : 이 express의 전체 설정
-// view engine : 동적 템플릿을 사용함을 알림
-
+app.engine("hbs", expressHbs.engine());
+//비내장 템플릿을 사용할 때는 엔진으로 등록해줘야 함.
+app.set("view engine", "hbs");
 app.set("views", "views");
-//view : view 파일들이 어디에 있는지 알려줌. views폴더가 기본값이고, 만약 다른 이름으로 해당 폴더를 만들었으면 꼭 설정해야 함.
 
 const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
