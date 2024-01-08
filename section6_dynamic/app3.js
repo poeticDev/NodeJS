@@ -2,11 +2,14 @@ const path = require("path");
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const expressHbs = require("express-handlebars");
+//handlebar는 익스프레스 내장되지 않았으므로, 설치 후에도 임포트 해와야 함
 
 const app = express();
 
-app.set("view engine", "ejs"); 
-//ejs 엔진은 express 내장
+app.engine("hbs", expressHbs.engine({layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs'}));
+//비내장 템플릿을 사용할 때는 엔진으로 등록해줘야 함.
+app.set("view engine", "hbs");
 app.set("views", "views");
 
 const adminData = require("./routes/admin");
